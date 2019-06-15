@@ -34,6 +34,6 @@ public class RxServiceGoodsMain {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        RxGoodsApplication.main(args);
+        RxServiceGoodsApplication.main(args);
     }
 }
