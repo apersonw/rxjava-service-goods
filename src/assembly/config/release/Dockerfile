@@ -1,7 +1,7 @@
 FROM registry.cn-shanghai.aliyuncs.com/taro-mall/java:8_server-jre
 
-RUN mkdir /myapp
-WORKDIR /myapp
+RUN mkdir /rxservice
+WORKDIR /rxservice
 
 COPY base-lib base-lib
 COPY lib lib

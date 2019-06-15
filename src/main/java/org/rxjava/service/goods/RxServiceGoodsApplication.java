@@ -15,9 +15,9 @@ import org.springframework.web.reactive.function.client.WebClient;
  * @author happy 2019-03-17 22:10
  */
 @SpringBootApplication
-public class RxGoodsApplication {
+public class RxServiceGoodsApplication {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(RxGoodsApplication.class).web(WebApplicationType.REACTIVE).run(args);
+        new SpringApplicationBuilder(RxServiceGoodsApplication.class).web(WebApplicationType.REACTIVE).run(args);
     }
 
     @Bean

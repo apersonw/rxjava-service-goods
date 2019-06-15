@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 /**
  * @author happy 2019-05-06 13:57
  */
-public class RxGoodsMain {
+public class RxServiceGoodsMain {
     public static void main(String[] args) {
         try {
             URLClassLoader cl = (URLClassLoader) ClassLoader.getSystemClassLoader();
