@@ -2,6 +2,8 @@ package org.rxjava.service.goods.form;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.rxjava.common.core.form.PageForm;
 
@@ -11,8 +13,9 @@ import java.util.List;
 /**
  * @author happy 2019-03-23 00:21
  */
-@Data()
-public class GoodsListForm {
+@Setter
+@Getter
+public class GoodsListForm extends PageForm {
     /**
      * 类目Id
      */

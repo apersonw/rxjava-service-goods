@@ -12,12 +12,10 @@ import org.rxjava.service.goods.repository.SkuRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.List;
 
 /**
  * @author happy 2019-03-23 00:16
@@ -30,21 +28,21 @@ public class GoodsService {
     @Autowired
     private SkuRepository skuRepository;
 
-    public Flux<GoodsModel> getListModel(Pageable pageable, GoodsListForm form) {
+    /**
+     * Model：列表
+     */
+    public Flux<GoodsModel> getListModel(GoodsListForm form) {
         return goodsRepository
-                .getList(pageable, form)
-                .map(this::transform);
+                .getList(PageRequest.of(form.getPage(), form.getPageSize()), form)
+                .map(this::castToModel);
     }
 
-    public Mono<Page<Goods>> getPage(Pageable pageable, GoodsPageForm form) {
+    /**
+     * Entity：分页
+     */
+    public Mono<Page<Goods>> getPage(GoodsPageForm form) {
         return goodsRepository
-                .findPage(pageable, form);
-    }
-
-    private GoodsModel transform(Goods goods) {
-        GoodsModel model = new GoodsModel();
-        BeanUtils.copyProperties(goods, model);
-        return model;
+                .findPage(PageRequest.of(form.getPage(), form.getPageSize()), form);
     }
 
     public Mono<Goods> create(GoodsCreateForm form) {
@@ -54,19 +52,22 @@ public class GoodsService {
                 .save(goods);
     }
 
-    public Mono<GoodsModel> findGoods(String goodsId) {
-        return Mono
-                .zip(goodsRepository.findById(goodsId),
-                        this.findSkus(goodsId).collectList()
-                )
-                .map(t -> {
-                    Goods goods = t.getT1();
-                    List<SkuModel> skus = t.getT2();
-                    GoodsModel model = new GoodsModel();
-                    BeanUtils.copyProperties(goods, model);
-                    model.setSkus(skus);
-                    return model;
-                });
+    public Mono<GoodsModel> findGoodsModel(String goodsId) {
+        return this.findGoods(goodsId)
+                .map(this::castToModel);
+    }
+
+    public Mono<Goods> findGoods(String goodsId) {
+        return goodsRepository.findById(goodsId);
+    }
+
+    /**
+     * 转为Model
+     */
+    private GoodsModel castToModel(Goods goods) {
+        GoodsModel model = new GoodsModel();
+        BeanUtils.copyProperties(goods, model);
+        return model;
     }
 
     private Flux<SkuModel> findSkus(String goodsId) {
@@ -79,5 +80,10 @@ public class GoodsService {
         SkuModel model = new SkuModel();
         BeanUtils.copyProperties(sku, model);
         return model;
+    }
+
+    public Mono<Void> deleteByGoodsId(String goodsId) {
+        return goodsRepository
+                .deleteById(goodsId);
     }
 }

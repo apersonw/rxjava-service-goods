@@ -8,17 +8,14 @@ import org.rxjava.service.goods.services.GoodsService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 
 /**
  * @author happy 2019-03-27 02:30
+ * 管理商品
  */
 @RestController
 @RequestMapping("admin")
@@ -30,14 +27,15 @@ public class AdminGoodsController {
     private GoodsRepository goodsRepository;
 
     /**
-     * 创建商品
+     * 保存
      */
     @PostMapping("goods")
     public Mono<Goods> save(GoodsCreateForm form) {
         return Mono.justOrEmpty(form.getId())
                 .flatMap(id -> goodsRepository.findById(id))
                 .switchIfEmpty(Mono.just(new Goods()).map(goods -> {
-                    goods.setId(null);
+                    //将form的id置null
+                    form.setId(null);
                     return goods;
                 }))
                 .map(goods -> {
@@ -48,13 +46,35 @@ public class AdminGoodsController {
     }
 
     /**
-     * 商品分页
+     * 分页
      */
     @GetMapping("goodsPage")
     public Mono<Page<Goods>> getPage(
             @Valid GoodsPageForm form
     ) {
         return goodsService
-                .getPage(PageRequest.of(form.getPage(), form.getPageSize()), form);
+                .getPage(form);
+    }
+
+    /**
+     * 详情
+     */
+    @GetMapping("goods/{goodsId}")
+    public Mono<Goods> getByGoodsId(
+            @PathVariable String goodsId
+    ) {
+        return goodsService
+                .findGoods(goodsId);
+    }
+
+    /**
+     * 删除
+     */
+    @DeleteMapping("goods/{goodsId}")
+    public Mono<Void> deleteByGoodsId(
+            @PathVariable String goodsId
+    ) {
+        return goodsService
+                .deleteByGoodsId(goodsId);
     }
 }

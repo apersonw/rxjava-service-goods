@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * @author happy 2019-03-23 00:19
+ * 商品
  */
 @Data
 public class GoodsModel {
@@ -20,11 +21,7 @@ public class GoodsModel {
      */
     private Resource thumb;
     /**
-     * 售价
+     * 封面价
      */
     private int coverPrice;
-    /**
-     * 商品Skus列表
-     */
-    private List<SkuModel> skus;
 }

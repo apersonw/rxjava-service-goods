@@ -17,3 +17,5 @@ spring:
         prefetch: 1
         default-requeue-rejected: true
         auto-startup: true
+server:
+  port: 8082
