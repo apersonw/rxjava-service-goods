@@ -1,9 +1,7 @@
 package org.rxjava.service.goods.model;
 
 import lombok.Data;
-import org.rxjava.common.core.entity.Resource;
-
-import java.util.List;
+import org.rxjava.common.core.entity.Image;
 
 /**
  * @author happy 2019-03-23 00:19
@@ -19,7 +17,7 @@ public class GoodsModel {
     /**
      * 缩略图
      */
-    private Resource thumb;
+    private Image thumb;
     /**
      * 封面价
      */

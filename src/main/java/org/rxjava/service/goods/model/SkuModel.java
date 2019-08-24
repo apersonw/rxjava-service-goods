@@ -2,14 +2,8 @@ package org.rxjava.service.goods.model;
 
 import io.lettuce.core.KeyValue;
 import lombok.Data;
-import org.rxjava.common.core.entity.Resource;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.rxjava.common.core.entity.Image;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -33,7 +27,7 @@ public class SkuModel {
     /**
      * SKU图片
      */
-    private Resource skuImg;
+    private Image skuImg;
     /**
      * SKU属性列表
      */

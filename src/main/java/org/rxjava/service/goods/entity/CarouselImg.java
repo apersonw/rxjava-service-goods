@@ -1,7 +1,7 @@
 package org.rxjava.service.goods.entity;
 
 import lombok.Data;
-import org.rxjava.common.core.entity.Resource;
+import org.rxjava.common.core.entity.Image;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -21,7 +21,7 @@ public class CarouselImg {
     @Id
     private String id;
     private String goodsId;
-    private Resource carouselImg;
+    private Image carouselImg;
     /**
      * 优先级
      */

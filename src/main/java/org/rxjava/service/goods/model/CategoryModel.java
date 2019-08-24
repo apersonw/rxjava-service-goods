@@ -1,7 +1,7 @@
 package org.rxjava.service.goods.model;
 
 import lombok.Data;
-import org.rxjava.common.core.entity.Resource;
+import org.rxjava.common.core.entity.Image;
 
 /**
  * @author happy 2019-03-25 23:13
@@ -23,5 +23,5 @@ public class CategoryModel {
     /**
      * 缩略图
      */
-    private Resource thumb;
+    private Image thumb;
 }

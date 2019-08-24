@@ -1,7 +1,7 @@
 package org.rxjava.service.goods.entity;
 
+import javafx.scene.image.Image;
 import lombok.Data;
-import org.rxjava.common.core.entity.Resource;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -32,7 +32,7 @@ public class Content {
      * 类型：IMG,TEXT,VIDEO,FILE
      */
     private String type;
-    private Resource image;
+    private Image image;
     private String value;
     /**
      * 创建日期
