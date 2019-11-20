@@ -80,7 +80,7 @@ public class GoodsController {
     @GetMapping("testBus")
     public Mono<String> testBus() {
         System.out.println(LocalDateTime.now());
-        busEmitter.delayEmit(BusEventType.ORDER_CANCEL_START, new TextNode("测试死信消息队列"), 6).subscribe();
+        busEmitter.delayEmit(BusEventType.ORDER_CANCEL_START, new TextNode("测试死信消息队列"), 10).subscribe();
         return Mono.justOrEmpty("测试死信队列");
     }
 
