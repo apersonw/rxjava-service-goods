@@ -1,27 +1,22 @@
 package org.rxjava.service.goods.person;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.node.TextNode;
 import org.rxjava.common.bus.BusEmitter;
-import org.rxjava.common.bus.BusEvent;
 import org.rxjava.common.bus.BusEventType;
 import org.rxjava.common.core.annotation.Login;
 import org.rxjava.service.goods.form.GoodsListForm;
 import org.rxjava.service.goods.model.GoodsModel;
 import org.rxjava.service.goods.model.SkuAndGroupModel;
 import org.rxjava.service.goods.services.GoodsService;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 /**
  * @author happy 2019-03-17 23:27

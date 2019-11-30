@@ -36,11 +36,6 @@ public class Goods extends BaseEntity {
      */
     private int coverPrice;
     /**
-     * 默认为虚拟商品
-     */
-    @Indexed
-    private String type;
-    /**
      * 商品状态
      */
     @Indexed

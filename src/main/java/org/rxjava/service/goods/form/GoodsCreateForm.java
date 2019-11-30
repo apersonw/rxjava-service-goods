@@ -4,7 +4,6 @@ import lombok.Data;
 import org.rxjava.common.core.entity.Image;
 import org.rxjava.service.goods.status.GoodsStatus;
 import org.rxjava.service.goods.type.ExcessType;
-import org.rxjava.service.goods.type.GoodsType;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
@@ -36,10 +35,6 @@ public class GoodsCreateForm {
      * 品牌Id
      */
     private String brandId;
-    /**
-     * 默认为虚拟商品
-     */
-    private String type= GoodsType.VIRTUAL.name();
     /**
      * 商品状态
      */
